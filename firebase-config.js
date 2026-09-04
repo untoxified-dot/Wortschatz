@@ -5,10 +5,11 @@
 // (see README.md), not by keeping this file secret.
 
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyASGpv7QuoRCtVY8_-0k6q1DcDP1od9wwM",
+  authDomain: "wortschatz-vlad.firebaseapp.com",
+  projectId: "wortschatz-vlad",
+  storageBucket: "wortschatz-vlad.firebasestorage.app",
+  messagingSenderId: "1009180969862",
+  appId: "1:1009180969862:web:97da247fe24ee3c9e37a07",
+  measurementId: "G-KN22Z354PK"
 };
