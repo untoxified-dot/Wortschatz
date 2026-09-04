@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wortschatz — a shared German word catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Wortschatz<span class="dot">.</span></h1>
+    <p class="tagline">A shared card catalog of German words — add one, borrow a few.</p>
+  </header>
+
+  <div class="search-row">
+    <input type="search" id="search" placeholder="Search the catalog…" autocomplete="off">
+  </div>
+
+  <nav class="drawers" id="drawers">
+    <button class="drawer-tab is-active" data-category="Alle">Alle</button>
+    <button class="drawer-tab" data-category="Substantiv">Substantive</button>
+    <button class="drawer-tab" data-category="Verb">Verben</button>
+    <button class="drawer-tab" data-category="Adjektiv">Adjektive</button>
+  </nav>
+
+  <main id="catalog">
+    <div class="card-grid" id="card-grid"></div>
+    <div class="empty-state" id="empty-state" hidden>
+      <p>Nothing filed here yet.</p>
+      <p class="empty-sub">Be the first to add one.</p>
+    </div>
+    <div class="loading-state" id="loading-state">
+      <p>Opening the drawer…</p>
+    </div>
+  </main>
+
+  <button id="add-word-btn" class="fab" aria-haspopup="true" aria-expanded="false">
+    <span aria-hidden="true">+</span> Neues Wort
+  </button>
+
+  <div id="scrim" class="scrim" hidden></div>
+
+  <aside id="add-panel" class="add-panel" hidden aria-label="Add a new word">
+    <form id="word-form" novalidate>
+      <div class="panel-head">
+        <h2>Neuer Katalogeintrag</h2>
+        <button type="button" id="close-panel" class="icon-btn" aria-label="Close">✕</button>
+      </div>
+
+      <fieldset class="category-fieldset">
+        <legend>Wortart</legend>
+        <label class="pill"><input type="radio" name="category" value="Substantiv" checked> Substantiv</label>
+        <label class="pill"><input type="radio" name="category" value="Verb"> Verb</label>
+        <label class="pill"><input type="radio" name="category" value="Adjektiv"> Adjektiv</label>
+      </fieldset>
+
+      <div id="article-field" class="field">
+        <label class="field-label">Artikel</label>
+        <div class="article-options">
+          <label class="pill"><input type="radio" name="article" value="der" checked> der</label>
+          <label class="pill"><input type="radio" name="article" value="die"> die</label>
+          <label class="pill"><input type="radio" name="article" value="das"> das</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="word-input">Wort (auf Deutsch)</label>
+        <input type="text" id="word-input" name="word" required maxlength="60" placeholder="z. B. Fenster">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="translation-input">Übersetzung</label>
+        <input type="text" id="translation-input" name="translation" maxlength="80" placeholder="e.g. window">
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="example-input">Beispielsatz <span class="optional">optional</span></label>
+        <textarea id="example-input" name="example" maxlength="200" rows="2" placeholder="Das Fenster ist offen."></textarea>
+      </div>
+
+      <div class="panel-actions">
+        <button type="submit" class="btn-primary">In den Katalog aufnehmen</button>
+      </div>
+      <p class="form-note">Sichtbar für jeden, der den Link hat.</p>
+    </form>
+  </aside>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <template id="card-template">
+    <article class="card">
+      <span class="punch-hole" aria-hidden="true"></span>
+      <span class="card-tag"></span>
+      <h3 class="card-word"></h3>
+      <p class="card-translation"></p>
+      <p class="card-example"></p>
+      <button class="card-delete" aria-label="Remove word">✕</button>
+    </article>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
